@@ -8,9 +8,6 @@ function openApp(url, fallbackUrl) {
     if (elapsed < timeout + 100) {
       window.location = fallbackUrl;
     }
-    setTimeout(function () {
-      window.close();
-    }, 500);
   }, timeout);
 }
 
