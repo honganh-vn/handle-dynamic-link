@@ -8,88 +8,21 @@
 	<!-- Meta cho preview khi share link -->
 	<meta property="og:title" content="Đại Lý Hồng Anh - Mua sắm nhanh chóng">
 	<meta property="og:description" content="Truy cập ứng dụng Đại Lý Hồng Anh để xem sản phẩm và đặt hàng dễ dàng.">
-	<meta property="og:image"
-		content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq7h_A2yAugL6QjVnOHLZV6riEDwW6PrKDiA&s">
+	<meta property="og:image" content="./assets/images/logo-honganh.png">
 	<meta property="og:url" content="https://handle-dynamic-link.pages.dev">
 	<meta name="twitter:card" content="summary_large_image">
 
-	<style>
-		body {
-			margin: 0;
-			font-family: sans-serif;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-			background: linear-gradient(to bottom, #ffe0b2, #ffcc80);
-			color: #333;
-		}
-
-		.container {
-			text-align: center;
-			background: white;
-			padding: 30px;
-			border-radius: 15px;
-			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-		}
-
-		.logo {
-			width: 120px;
-			margin-bottom: 20px;
-		}
-
-		.title {
-			font-size: 24px;
-			font-weight: bold;
-		}
-
-		.description {
-			font-size: 16px;
-			margin: 10px 0 20px;
-		}
-
-		.loading {
-			font-size: 14px;
-			color: #555;
-		}
-	</style>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 	<div class="container">
-		<img class="logo" src="https://honganh.vn/images/logo.png" alt="Đại Lý Hồng Anh">
-		<div class="title">Đang mở ứng dụng...</div>
-		<div class="description">Nếu app chưa cài, bạn sẽ được chuyển tới App Store hoặc Google Play.</div>
-		<div class="loading">⏳ Vui lòng chờ trong giây lát</div>
+		<img class="logo" src="./assets/images/logo-honganh.png" alt="Đại Lý Hồng Anh">
+		<div class="title">Đại Lý Hồng Anh</div>
+
 	</div>
 
-	<script>
-		var now = new Date().getTime();
-		var timeout = 1500;
-
-		function openApp(url, fallbackUrl) {
-			window.location = url;
-			setTimeout(function () {
-				var elapsed = new Date().getTime() - now;
-				if (elapsed < timeout + 100) {
-					window.location = fallbackUrl;
-				}
-			}, timeout);
-		}
-
-		var pathAndQuery = window.location.pathname + window.location.search;
-		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-		if (/iPhone|iPad|iPod/.test(userAgent)) {
-			openApp("cplatform://" + pathAndQuery.substring(1),
-				"https://apps.apple.com/us/app/%C4%91%E1%BA%A1i-l%C3%BD-h%E1%BB%93ng-anh/id6470966667");
-		} else if (/Android/.test(userAgent)) {
-			openApp("intent://" + pathAndQuery.substring(1) + "#Intent;scheme=cplatform;package=com.frovis.seller_mobile;end",
-				"https://play.google.com/store/apps/details?id=com.honganhprod.sellermobile&hl=vi");
-		} else {
-			window.location = "https://honganh.vn/";
-		}
-	</script>
+	<script src="js.js"></script>
 </body>
 
 </html>

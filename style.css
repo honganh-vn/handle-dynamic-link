@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: white;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.logo {
+  width: 10vh;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  padding: 40px;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin-top: 60px;
+  font-size: 50px;
+  font-weight: 500;
+}
