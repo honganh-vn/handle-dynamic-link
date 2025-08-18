@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Open App</title>
+</head>
+
+<body>
+	<script>
+		var now = new Date().getTime();
+		var timeout = 1500;
+
+		function openApp(url, fallbackUrl) {
+			window.location = url;
+			setTimeout(function () {
+				var elapsed = new Date().getTime() - now;
+				if (elapsed < timeout + 100) {
+					window.location = fallbackUrl;
+				}
+			}, timeout);
+		}
+
+		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+		if (/iPhone|iPad|iPod/.test(userAgent)) {
+			openApp("myapp://home", "https://apps.apple.com/app/idYOUR_APP_ID");
+		} else if (/Android/.test(userAgent)) {
+			// Android
+			openApp("intent://home#Intent;scheme=myapp;package=com.example.app;end",
+				"https://play.google.com/store/apps/details?id=com.example.app");
+		} else {
+			window.location = "https://example.com";
+		}
+	</script>
+</body>
+
+</html>
