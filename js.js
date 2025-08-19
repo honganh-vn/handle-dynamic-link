@@ -25,5 +25,5 @@ if (/iPhone|iPad|iPod/.test(userAgent)) {
     "https://play.google.com/store/apps/details?id=com.honganhprod.sellermobile&hl=vi"
   );
 } else {
-  window.location = "https://honganh.vn/";
+  window.location = "https://m.shop.honganh.vn/onboarding";
 }
