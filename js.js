@@ -21,9 +21,7 @@ if (/iPhone|iPad|iPod/.test(userAgent)) {
   );
 } else if (/Android/.test(userAgent)) {
   openApp(
-    "intent://shop.honganh.vn/" +
-      pathAndQuery.substring(1) +
-      "#Intent;scheme=cplatform;package=com.frovis.seller_mobile;end",
+    "cplatform://shop.honganh.vn/" + pathAndQuery.substring(1),
     "https://play.google.com/store/apps/details?id=com.honganhprod.sellermobile&hl=vi"
   );
 } else {
