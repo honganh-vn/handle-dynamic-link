@@ -5,6 +5,12 @@ function openApp(url, fallbackUrl) {
   const now = Date.now();
 
   window.location.href = url;
+  setTimeout(() => {
+    const end = Date.now();
+    if (end - now < 1600) {
+      console.log(fallbackUrl);
+    }
+  }, 1500);
 
   setTimeout(function () {
     window.location.href = originalLink;
