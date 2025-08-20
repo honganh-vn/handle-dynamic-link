@@ -5,7 +5,8 @@ function openApp(url, fallbackUrl) {
   const win = window.open(url, "_blank");
 
   setTimeout(() => {
-    if (win.location.href === originalLink) {
+    console.log(win.location.href);
+    if (win.location.href === "about:blank") {
       window.location.href = fallbackUrl;
     }
   }, 1500);
