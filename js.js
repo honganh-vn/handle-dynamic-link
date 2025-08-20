@@ -6,9 +6,9 @@ function openApp(url, fallbackUrl) {
 
   window.location.href = url;
 
-  setTimeout(function () {
-    window.location.href = fallbackUrl;
-  }, 2000); // timeout ~1500-2000ms là phổ biến
+  // setTimeout(function () {
+  //   window.location.href = fallbackUrl;
+  // }, 2000);
 }
 
 function handleOpenApp() {
