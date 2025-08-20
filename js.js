@@ -1,4 +1,5 @@
 var timeout = 500;
+var originalLink = window.location.href;
 
 function openApp(url, fallbackUrl) {
   var iframe = document.createElement("iframe");
@@ -13,7 +14,7 @@ function openApp(url, fallbackUrl) {
   }, timeout);
 
   setTimeout(function () {
-    window.location.href = "http://dlink.honganh.vn";
+    window.location.href = originalLink;
   }, timeout + 500);
 }
 
