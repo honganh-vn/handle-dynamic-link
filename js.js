@@ -2,29 +2,16 @@ var timeout = 500;
 var originalLink = window.location.href;
 
 function openApp(url, fallbackUrl) {
-  let appOpened = false;
+  const win = window.open(url, "_parent");
 
-  // Chrome/Android: detect focus loss
-  const blurHandler = () => {
-    appOpened = true;
-  };
-  window.addEventListener("blur", blurHandler);
-
-  // Thử mở app
-  window.location = url;
-
-  // Nếu app không mở sau 1.5s → fallback
   setTimeout(() => {
-    if (!appOpened) {
-      window.location = fallbackUrl;
+    if (win.location.href === originalLink) {
+      window.location.href = fallbackUrl;
     }
   }, 1500);
 
-  // Reset trang sau 2.5s (chỉ nếu app chưa mở)
-  setTimeout(() => {
-    if (!appOpened) {
-      window.location = originalLink;
-    }
+  setTimeout(function () {
+    window.location.href = originalLink;
   }, 2500);
 }
 
