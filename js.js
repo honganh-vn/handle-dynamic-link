@@ -9,12 +9,11 @@ function openApp(url, fallbackUrl) {
   setTimeout(function () {
     document.body.removeChild(iframe);
 
-    // Nếu app không mở -> fallback
     window.location.href = fallbackUrl;
   }, timeout);
 
   setTimeout(function () {
-    window.location.href = "http://dlink.honganh.vn/success.html";
+    window.location.href = "http://dlink.honganh.vn";
   }, timeout + 500);
 }
 
