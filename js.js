@@ -9,12 +9,13 @@ function openApp(url, fallbackUrl) {
     const end = Date.now();
     if (end - now < 1600) {
       console.log(fallbackUrl);
+      window.location.href = fallbackUrl;
     }
   }, 1500);
 
   setTimeout(function () {
     window.location.href = originalLink;
-  }, 1000);
+  }, 2500);
 }
 
 function handleOpenApp() {
