@@ -2,20 +2,13 @@ var timeout = 500;
 var originalLink = window.location.href;
 
 function openApp(url, fallbackUrl) {
-  var iframe = document.createElement("iframe");
-  iframe.style.display = "none";
-  iframe.src = url;
-  const hihi = document.body.appendChild(iframe);
+  const now = Date.now();
+
+  window.location.href = url;
 
   setTimeout(function () {
-    document.body.removeChild(iframe);
-    console.log(hihi);
     window.location.href = fallbackUrl;
-  }, timeout);
-
-  // setTimeout(function () {
-  //   window.location.href = originalLink;
-  // }, timeout + 500);
+  }, 2000); // timeout ~1500-2000ms là phổ biến
 }
 
 function handleOpenApp() {
