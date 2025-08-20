@@ -5,17 +5,17 @@ function openApp(url, fallbackUrl) {
   var iframe = document.createElement("iframe");
   iframe.style.display = "none";
   iframe.src = url;
-  document.body.appendChild(iframe);
+  const hihi = document.body.appendChild(iframe);
 
   setTimeout(function () {
     document.body.removeChild(iframe);
-
+    console.log(hihi);
     window.location.href = fallbackUrl;
   }, timeout);
 
-  setTimeout(function () {
-    window.location.href = originalLink;
-  }, timeout + 500);
+  // setTimeout(function () {
+  //   window.location.href = originalLink;
+  // }, timeout + 500);
 }
 
 function handleOpenApp() {
