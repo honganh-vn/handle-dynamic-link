@@ -14,4 +14,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 36a3c5f41147f61680b1cfeae59a9d1d
           projectName: dlink-honganh-vn
-          directory: ./assets
+          directory: assets
