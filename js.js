@@ -2,19 +2,28 @@ var timeout = 500;
 var originalLink = window.location.href;
 
 function openApp(url, fallbackUrl) {
-  const now = Date.now();
+  let appOpened = false;
 
+  // Detect nếu user rời tab (app mở)
+  const blurHandler = () => {
+    appOpened = true;
+    window.removeEventListener("blur", blurHandler);
+  };
+  window.addEventListener("blur", blurHandler);
+
+  const start = Date.now();
   window.location.href = url;
+
   setTimeout(() => {
-    const end = Date.now();
-    if (end - now < 1600) {
-      console.log(fallbackUrl);
+    if (!appOpened) {
       window.location.href = fallbackUrl;
     }
   }, 1500);
 
-  setTimeout(function () {
-    window.location.href = originalLink;
+  setTimeout(() => {
+    if (!appOpened) {
+      window.location.href = originalLink;
+    }
   }, 2500);
 }
 
