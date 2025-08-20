@@ -1,4 +1,3 @@
-var now = new Date().getTime();
 var timeout = 1500;
 
 function openApp(url, fallbackUrl) {
@@ -9,7 +8,7 @@ function openApp(url, fallbackUrl) {
 
   setTimeout(function () {
     document.body.removeChild(iframe);
-    window.location = fallbackUrl;
+    window.location.href = fallbackUrl;
   }, timeout);
 }
 
@@ -27,5 +26,5 @@ if (/iPhone|iPad|iPod/.test(userAgent)) {
     "https://play.google.com/store/apps/details?id=com.honganhprod.sellermobile&hl=vi"
   );
 } else {
-  window.location = "https://m.shop.honganh.vn/onboarding";
+  window.location.href = "https://m.shop.honganh.vn/onboarding";
 }
