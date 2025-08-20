@@ -6,9 +6,9 @@ function openApp(url, fallbackUrl) {
 
   window.location.href = url;
 
-  // setTimeout(function () {
-  //   window.location.href = fallbackUrl;
-  // }, 2000);
+  setTimeout(function () {
+    window.location.href = originalLink;
+  }, 1000);
 }
 
 function handleOpenApp() {
