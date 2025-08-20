@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.honganh.sellermobile",
+      "sha256_cert_fingerprints": [
+        "2B:1A:39:7F:BD:CF:26:26:F2:15:4E:FF:9D:59:D8:AC:6E:BA:DD:E8:1C:12:AD:9B:1E:28:35:21:75:72:9E:CC"
+      ]
+    }
+  }
+]
