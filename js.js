@@ -2,7 +2,7 @@ var timeout = 500;
 var originalLink = window.location.href;
 
 function openApp(url, fallbackUrl) {
-  const win = window.open(url, "_parent");
+  const win = window.open(url, "_blank");
 
   setTimeout(() => {
     if (win.location.href === originalLink) {
