@@ -2,12 +2,14 @@ var now = new Date().getTime();
 var timeout = 1500;
 
 function openApp(url, fallbackUrl) {
-  window.location = url;
+  var iframe = document.createElement("iframe");
+  iframe.style.display = "none";
+  iframe.src = url;
+  document.body.appendChild(iframe);
+
   setTimeout(function () {
-    var elapsed = new Date().getTime() - now;
-    if (elapsed < timeout + 100) {
-      window.location = fallbackUrl;
-    }
+    document.body.removeChild(iframe);
+    window.location = fallbackUrl;
   }, timeout);
 }
 
