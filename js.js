@@ -188,7 +188,7 @@ var linker = new DeepLinker({
     logMessage("❌ Browser failed to respond to the deep link", 1);
   },
   onFallback: function () {
-    // window.location = iosStoreLink;
+    window.location = iosStoreLink;
     logMessage("↩️ Dialog hidden or user returned to tab → redirecting to store", 2);
   },
   onReturn: function () {
