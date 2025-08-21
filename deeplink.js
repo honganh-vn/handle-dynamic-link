@@ -1,5 +1,9 @@
 (function (window, document) {
   window.dataLayer = window.dataLayer || [];
+  var pathAndQuery = window.location.pathname + window.location.search;
+  var ua = window.navigator.userAgent;
+  var orignalLink = window.location.href;
+  console.log(orignalLink);
 
   function generateUUID() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
@@ -9,7 +13,6 @@
     });
   }
 
-  var ua = window.navigator.userAgent;
   var isMobile = {
     android: function () {
       return /Android/i.test(ua);
@@ -28,12 +31,12 @@
 
     this.openOnApp = function () {
       if (clickOpen > 0) {
+        console.log(33333);
         window.location = isMobile.ios() ? iosStoreLink : playStoreLink;
         return;
       }
       clickOpen++;
 
-      var pathAndQuery = window.location.pathname + window.location.search;
       window.location =
         "cplatform://shop.honganh.vn/" +
         pathAndQuery.substring(1) +
@@ -49,6 +52,9 @@
             if (xhr.responseText === "0") {
               window.location = isMobile.ios() ? iosStoreLink : playStoreLink;
               clickOpen = 0;
+              setTimeout(function () {
+                window.location = orignalLink;
+              }, 1000);
               if (options.onFallback) options.onFallback();
             } else {
               clickOpen = 0;
