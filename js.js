@@ -42,28 +42,32 @@ function launchWekitApproach(url, fallback) {
 
 function launchIframeApproach(url, fallback) {
   var iframe = document.createElement("iframe");
-  iframe.style.border = "none";
-  iframe.style.width = "1px";
-  iframe.style.height = "1px";
-
-  iframe.onload = function () {
-    document.location = url;
-    console.log(iframe);
-  };
-  iframe.onerror = function () {
-    console.log(12312312);
-  };
+  iframe.style.display = "none";
   iframe.src = url;
-  console.log(iframe);
-  alert(iframe.toString());
+  document.body.appendChild(iframe);
 
-  window.onload = function () {
-    document.body.appendChild(iframe);
+  var hidden = false;
 
-    setTimeout(function () {
+  // Nếu app mở được thì tab sẽ mất focus hoặc ẩn đi
+  function onHide() {
+    hidden = true;
+  }
+
+  window.addEventListener("blur", onHide);
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      hidden = true;
+    }
+  });
+
+  // Sau timeout, nếu không mở được app thì fallback
+  setTimeout(function () {
+    if (!hidden) {
       window.location = fallback;
-    }, 25);
-  };
+    }
+    // dọn event listener
+    window.removeEventListener("blur", onHide);
+  }, 1500);
 }
 
 function iosLaunch() {
