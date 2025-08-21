@@ -20,33 +20,12 @@
 		<img class="logo" src="./assets/images/logo-honganh.png" alt="Đại Lý Hồng Anh" />
 		<div class="title">Đại Lý Hồng Anh</div>
 		<button class="btn-open" onclick="handleOpenApp()">Mở ứng dụng</button>
-		<div id="deep-link-log1" style="padding: 10px; font-family: sans-serif; font-size: 20px"></div>
-		<div id="deep-link-log2" style="padding: 10px; font-family: sans-serif; font-size: 20px"></div>
-		<div id="deep-link-log3" style="padding: 10px; font-family: sans-serif; font-size: 20px"></div>
 		<version>v1.0.0</version>
 	</div>
 
-	<!-- <script src="js.js"></script> -->
+	<script src="js.js"></script>
 	<script src="deeplink.js"></script>
-	<script>
-		function logMessage(msg, index) {
-			const box = document.getElementById(`deep-link-log${index}`);
-			const p = document.createElement("p");
-			p.textContent = msg;
-			box.appendChild(p);
-		}
-		var linker = new DeepLinker({
-			onFallback: function () {
-				logMessage("↩️ Fallback: chuyển App Store", 1);
-			},
-			onSuccess: function () {
-				logMessage("↩️ App mở thành công", 2);
-			},
-		});
-		const handleOpenApp = () => {
-			linker.openOnApp();
-		};
-	</script>
+
 </body>
 
 </html>
