@@ -4,7 +4,7 @@
 // var androidPackageName = "com.honganh.sellermobile";
 var iosStoreLink = "https://apps.apple.com/us/app/%C4%91%E1%BA%A1i-l%C3%BD-h%E1%BB%93ng-anh/id6470966667";
 var playStoreLink = "https://play.google.com/store/apps/details?id=com.honganhprod.sellermobile&hl=vi";
-// var ua = window.navigator.userAgent;
+var ua = window.navigator.userAgent;
 
 // // split the first :// from the url string
 // var split = url.split(/:\/\/(.+)/);
@@ -19,14 +19,14 @@ var playStoreLink = "https://play.google.com/store/apps/details?id=com.honganhpr
 //   fallback: fallback,
 // };
 
-// var isMobile = {
-//   android: function () {
-//     return /Android/i.test(ua);
-//   },
-//   ios: function () {
-//     return /iPhone|iPad|iPod/i.test(ua);
-//   },
-// };
+var isMobile = {
+  android: function () {
+    return /Android/i.test(ua);
+  },
+  ios: function () {
+    return /iPhone|iPad|iPod/i.test(ua);
+  },
+};
 
 // function launchWekitApproach(url, fallback) {
 //   let now = Date.now();
@@ -71,11 +71,11 @@ var playStoreLink = "https://play.google.com/store/apps/details?id=com.honganhpr
 
 // function iosLaunch() {
 //   // chrome and safari on ios >= 9 don't allow the iframe approach
-//   if (ua.match(/CriOS/) || ua.match(/Safari/)) {
-//     launchWekitApproach(urls.deepLink, urls.iosStoreLink || urls.fallback);
-//   } else {
-//     launchIframeApproach(urls.deepLink, urls.iosStoreLink || urls.fallback);
-//   }
+// if (ua.match(/CriOS/) || ua.match(/Safari/)) {
+//   launchWekitApproach(urls.deepLink, urls.iosStoreLink || urls.fallback);
+// } else {
+//   launchIframeApproach(urls.deepLink, urls.iosStoreLink || urls.fallback);
+// }
 // }
 
 // function androidLaunch() {
@@ -88,15 +88,7 @@ var playStoreLink = "https://play.google.com/store/apps/details?id=com.honganhpr
 //   }
 // }
 
-// const handleOpenApp = () => {
-//   if (isMobile.ios()) {
-//     iosLaunch();
-//   } else if (isMobile.android()) {
-//     androidLaunch();
-//   } else {
-//     window.location = urls.fallback;
-//   }
-// };
+const handleOpenApp = () => {};
 
 function DeepLinker(options) {
   if (!options) {
@@ -144,8 +136,6 @@ function DeepLinker(options) {
     hasFocus = true;
   }
 
-  // add/remove event listeners
-  // `mode` can be "add" or "remove"
   function bindEvents(mode) {
     [
       [window, "blur", onBlur],
@@ -163,15 +153,26 @@ function DeepLinker(options) {
   this.destroy = bindEvents.bind(null, "remove");
   this.openURL = function (url) {
     // it can take a while for the dialog to appear
-    var dialogTimeout = 500;
+    var dialogTimeout = 1500;
 
     setTimeout(function () {
       if (hasFocus && options.onIgnored) {
         options.onIgnored();
       }
     }, dialogTimeout);
+    if (ua.match(/CriOS/) || ua.match(/Safari/)) {
+      window.location = url;
+    } else {
+      var iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.src = url;
+      document.body.appendChild(iframe);
 
-    window.location = url;
+      // fallback cho iOS Safari (iframe đôi khi bị chặn)
+      setTimeout(function () {
+        document.body.removeChild(iframe);
+      }, 2000);
+    }
   };
 }
 
