@@ -31,6 +31,12 @@
 	<!-- <script src="js.js"></script> -->
 	<script src="deeplink.js"></script>
 	<script>
+		function logMessage(msg, index) {
+			const box = document.getElementById(`deep-link-log${index}`);
+			const p = document.createElement("p");
+			p.textContent = msg;
+			box.appendChild(p);
+		}
 		var linker = new DeepLinker({
 			scheme: "drumtifypro://",
 			storeUrl: "https://apps.apple.com/us/app/drumtify-pro-sound-inside-you/id1625542241",
@@ -42,10 +48,14 @@
 				vImg: "https://i.ytimg.com/vi/TKIfLjkUYJw/mqdefault.jpg"
 			},
 			onFallback: function () {
-				console.log("↩️ Fallback: chuyển App Store");
+
+				logMessage("↩️ Fallback: chuyển App Store", 1);
+
 			},
 			onSuccess: function () {
-				console.log("✅ App mở thành công");
+				logMessage("↩️ Fallback: chuyển App Store", 2);
+
+				// console.log("✅ App mở thành công");
 			}
 		});
 		const handleOpenApp = () => {
