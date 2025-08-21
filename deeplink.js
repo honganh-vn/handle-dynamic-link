@@ -2,7 +2,6 @@
   // --- Google Analytics setup ---
   window.dataLayer = window.dataLayer || [];
 
-  // --- Helper: Generate UUID ---
   function generateUUID() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
       var r = (Math.random() * 16) | 0;
@@ -27,12 +26,8 @@
       }
       clickOpen++;
 
-      window.location =
-        options.scheme +
-        options.host +
-        (options.params ? "?" + new URLSearchParams(options.params).toString() : "") +
-        "&uuid=" +
-        uuid;
+      var pathAndQuery = window.location.pathname + window.location.search;
+      window.location = options.scheme + options.host + +pathAndQuery.substring(1) + "&uuid=" + uuid;
 
       // Sau 3s → check với server
       setTimeout(function () {

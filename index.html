@@ -50,22 +50,15 @@
 			scheme: "cplatform://",
 			host: "shop.honganh.vn",
 			storeUrl: isMobile.ios() ? "https://apps.apple.com/us/app/%C4%91%E1%BA%A1i-l%C3%BD-h%E1%BB%93ng-anh/id6470966667" : "https://play.google.com/store/apps/details?id=com.honganhprod.sellermobile&hl=vi",
-			checkApi: "https://api-live-pro.drumtify.com/get-open-scheme",
-			params: {
-				vId: "TKIfLjkUYJw",
-				vTitle: "Hướng dẫn nghe nhạc Offline khi tắt màn hình hoặc chế độ PiP trên Drumtify",
-				vArtist: "Drumtify - Music For Life",
-				vImg: "https://i.ytimg.com/vi/TKIfLjkUYJw/mqdefault.jpg"
-			},
+			checkApi: "https://deeplink-api.onrender.com/get-open-scheme",
+
 			onFallback: function () {
 
 				logMessage("↩️ Fallback: chuyển App Store", 1);
 
 			},
 			onSuccess: function () {
-				logMessage("↩️ Fallback: chuyển App Store", 2);
-
-				// console.log("✅ App mở thành công");
+				logMessage("↩️ App mở thành công", 2);
 			}
 		});
 		const handleOpenApp = () => {
