@@ -10,7 +10,7 @@ var ua = window.navigator.userAgent;
 var split = url.split(/:\/\/(.+)/);
 var scheme = split[0];
 var path = split[1] || "";
-
+console.log(ua);
 var urls = {
   deepLink: url,
   iosStoreLink: iosStoreLink,
@@ -29,10 +29,15 @@ var isMobile = {
 };
 
 function launchWekitApproach(url, fallback) {
-  document.location = url;
+  let now = Date.now();
+
+  window.location = url;
+
   setTimeout(function () {
-    document.location = fallback;
-  }, 250);
+    if (Date.now() - now < 2000) {
+      window.location = fallback;
+    }
+  }, 1500);
 }
 
 function launchIframeApproach(url, fallback) {
@@ -50,7 +55,7 @@ function launchIframeApproach(url, fallback) {
   };
   iframe.src = url;
   console.log(iframe);
-  alert(iframe);
+  alert(iframe.toString());
 
   window.onload = function () {
     document.body.appendChild(iframe);
@@ -63,7 +68,7 @@ function launchIframeApproach(url, fallback) {
 
 function iosLaunch() {
   // chrome and safari on ios >= 9 don't allow the iframe approach
-  if (ua.match(/CriOS/) || (ua.match(/Safari/) && ua.match(/Version\/(9|10|11|12)/))) {
+  if (ua.match(/CriOS/) || ua.match(/Safari/)) {
     launchWekitApproach(urls.deepLink, urls.iosStoreLink || urls.fallback);
   } else {
     launchIframeApproach(urls.deepLink, urls.iosStoreLink || urls.fallback);
