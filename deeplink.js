@@ -1,5 +1,4 @@
 (function (window, document) {
-  // --- Google Analytics setup ---
   window.dataLayer = window.dataLayer || [];
 
   function generateUUID() {
@@ -10,12 +9,7 @@
     });
   }
 
-  // --- DeepLinker main ---
   function DeepLinker(options) {
-    if (!options || !options.scheme || !options.storeUrl) {
-      throw new Error("DeepLinker: missing required options {scheme, storeUrl}");
-    }
-
     var uuid = generateUUID();
     var clickOpen = 0;
 
@@ -27,7 +21,7 @@
       clickOpen++;
 
       var pathAndQuery = window.location.pathname + window.location.search;
-      window.location = options.scheme + options.host + +pathAndQuery.substring(1) + "&uuid=" + uuid;
+      window.location = "cplatform://shop.honganh.vn/" + pathAndQuery.substring(1) + "&uuid=" + uuid;
 
       // Sau 3s → check với server
       setTimeout(function () {
