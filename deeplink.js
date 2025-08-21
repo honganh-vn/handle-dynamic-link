@@ -9,13 +9,26 @@
     });
   }
 
+  var ua = window.navigator.userAgent;
+  var isMobile = {
+    android: function () {
+      return /Android/i.test(ua);
+    },
+    ios: function () {
+      return /iPhone|iPad|iPod/i.test(ua);
+    },
+  };
+
+  var iosStoreLink = "https://apps.apple.com/us/app/%C4%91%E1%BA%A1i-l%C3%BD-h%E1%BB%93ng-anh/id6470966667";
+  var playStoreLink = "https://play.google.com/store/apps/details?id=com.honganhprod.sellermobile&hl=vi";
+
   function DeepLinker(options) {
     var uuid = generateUUID();
     var clickOpen = 0;
 
     this.openOnApp = function () {
       if (clickOpen > 0) {
-        window.location = options.storeUrl;
+        window.location = isMobile.ios() ? iosStoreLink : playStoreLink;
         return;
       }
       clickOpen++;
@@ -23,18 +36,16 @@
       var pathAndQuery = window.location.pathname + window.location.search;
       window.location = "cplatform://shop.honganh.vn/" + pathAndQuery.substring(1) + "&uuid=" + uuid;
 
-      // Sau 3s → check với server
       setTimeout(function () {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", options.checkApi + "?uuid=" + uuid, true);
+        xhr.open("GET", "https://deeplink-api.onrender.com/get-open-scheme?uuid=" + uuid, true);
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4 && xhr.status === 200) {
             if (xhr.responseText === "0") {
-              // App không mở được → fallback App Store
-              window.location = options.storeUrl;
+              window.location = isMobile.ios() ? iosStoreLink : playStoreLink;
+              clickOpen = 0;
               if (options.onFallback) options.onFallback();
             } else {
-              // App mở được → reset clickOpen
               clickOpen = 0;
               if (options.onSuccess) options.onSuccess();
             }
@@ -45,6 +56,5 @@
     };
   }
 
-  // expose global
   window.DeepLinker = DeepLinker;
 })(window, document);

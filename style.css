@@ -53,6 +53,7 @@ body {
 version {
   position: fixed;
   bottom: 5vh;
+  font-size: 19px;
 }
 
 .success {
