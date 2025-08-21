@@ -34,7 +34,12 @@
       clickOpen++;
 
       var pathAndQuery = window.location.pathname + window.location.search;
-      window.location = "cplatform://shop.honganh.vn/" + pathAndQuery.substring(1) + "&uuid=" + uuid;
+      window.location =
+        "cplatform://shop.honganh.vn/" +
+        pathAndQuery.substring(1) +
+        (pathAndQuery.includes("?") ? "&" : "?") +
+        "uuid=" +
+        uuid;
 
       setTimeout(function () {
         var xhr = new XMLHttpRequest();
