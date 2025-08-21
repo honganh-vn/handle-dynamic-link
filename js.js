@@ -4,7 +4,7 @@
 // var androidPackageName = "com.honganh.sellermobile";
 var iosStoreLink = "https://apps.apple.com/us/app/%C4%91%E1%BA%A1i-l%C3%BD-h%E1%BB%93ng-anh/id6470966667";
 var playStoreLink = "https://play.google.com/store/apps/details?id=com.honganhprod.sellermobile&hl=vi";
-var ua = window.navigator.userAgent;
+// var ua = window.navigator.userAgent;
 
 // // split the first :// from the url string
 // var split = url.split(/:\/\/(.+)/);
@@ -19,14 +19,14 @@ var ua = window.navigator.userAgent;
 //   fallback: fallback,
 // };
 
-var isMobile = {
-  android: function () {
-    return /Android/i.test(ua);
-  },
-  ios: function () {
-    return /iPhone|iPad|iPod/i.test(ua);
-  },
-};
+// var isMobile = {
+//   android: function () {
+//     return /Android/i.test(ua);
+//   },
+//   ios: function () {
+//     return /iPhone|iPad|iPod/i.test(ua);
+//   },
+// };
 
 // function launchWekitApproach(url, fallback) {
 //   let now = Date.now();
@@ -71,11 +71,11 @@ var isMobile = {
 
 // function iosLaunch() {
 //   // chrome and safari on ios >= 9 don't allow the iframe approach
-// if (ua.match(/CriOS/) || ua.match(/Safari/)) {
-//   launchWekitApproach(urls.deepLink, urls.iosStoreLink || urls.fallback);
-// } else {
-//   launchIframeApproach(urls.deepLink, urls.iosStoreLink || urls.fallback);
-// }
+//   if (ua.match(/CriOS/) || ua.match(/Safari/)) {
+//     launchWekitApproach(urls.deepLink, urls.iosStoreLink || urls.fallback);
+//   } else {
+//     launchIframeApproach(urls.deepLink, urls.iosStoreLink || urls.fallback);
+//   }
 // }
 
 // function androidLaunch() {
@@ -88,7 +88,15 @@ var isMobile = {
 //   }
 // }
 
-const handleOpenApp = () => {};
+// const handleOpenApp = () => {
+//   if (isMobile.ios()) {
+//     iosLaunch();
+//   } else if (isMobile.android()) {
+//     androidLaunch();
+//   } else {
+//     window.location = urls.fallback;
+//   }
+// };
 
 function DeepLinker(options) {
   if (!options) {
@@ -160,19 +168,8 @@ function DeepLinker(options) {
         options.onIgnored();
       }
     }, dialogTimeout);
-    if (ua.match(/CriOS/) || ua.match(/Safari/)) {
-      window.location = url;
-    } else {
-      var iframe = document.createElement("iframe");
-      iframe.style.display = "none";
-      iframe.src = url;
-      document.body.appendChild(iframe);
 
-      // fallback cho iOS Safari (iframe đôi khi bị chặn)
-      setTimeout(function () {
-        document.body.removeChild(iframe);
-      }, 2000);
-    }
+    window.location = url;
   };
 }
 
