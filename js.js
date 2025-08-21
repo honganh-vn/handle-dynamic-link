@@ -177,17 +177,22 @@ function DeepLinker(options) {
 
 var pathAndQuery = window.location.pathname + window.location.search;
 var url = "cplatform://shop.honganh.vn/" + pathAndQuery.substring(1);
-
+function logMessage(msg) {
+  const box = document.getElementById("deep-link-log");
+  const p = document.createElement("p");
+  p.textContent = msg;
+  box.appendChild(p);
+}
 var linker = new DeepLinker({
   onIgnored: function () {
-    alert("browser failed to respond to the deep link");
+    logMessage("❌ Browser failed to respond to the deep link");
   },
   onFallback: function () {
     window.location = iosStoreLink;
-    alert("dialog hidden or user returned to tab");
+    logMessage("↩️ Dialog hidden or user returned to tab → redirecting to store");
   },
   onReturn: function () {
-    alert("user returned to the page from the native app");
+    logMessage("✅ User returned to the page from the native app");
   },
 });
 linker.openURL(url);
