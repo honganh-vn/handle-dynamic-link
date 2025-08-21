@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đại Lý Hồng Anh</title>
+    <meta property="og:title" content="Đại Lý Hồng Anh" />
+    <meta
+      property="og:description"
+      content="Nguồn hàng linh kiện, phụ kiện máy tính nhập khẩu. Đảm bảo chất lượng cao, giá thành cạnh tranh, đáp ứng nhu cầu của các đại lý trên toàn quốc."
+    />
+    <meta
+      property="og:image"
+      content="https://talentbold.com/Upload/avatar/20210723/141205979_Hong-Anh-computer-logo.png"
+    />
+    <meta property="og:url" content="http://dlink.honganh.vn/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<title>Đại Lý Hồng Anh</title>
-	<meta property="og:title" content="Đại Lý Hồng Anh" />
-	<meta property="og:description"
-		content="Nguồn hàng linh kiện, phụ kiện máy tính nhập khẩu. Đảm bảo chất lượng cao, giá thành cạnh tranh, đáp ứng nhu cầu của các đại lý trên toàn quốc." />
-	<meta property="og:image"
-		content="https://talentbold.com/Upload/avatar/20210723/141205979_Hong-Anh-computer-logo.png" />
-	<meta property="og:url" content="http://dlink.honganh.vn/" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<link rel="stylesheet" href="style.css" />
-	<style></style>
-</head>
+  <body>
+    <div class="container">
+      <img class="logo" src="./assets/images/logo-honganh.png" alt="Đại Lý Hồng Anh" />
+      <div class="title">Đại Lý Hồng Anh</div>
+      <button class="btn-open" onclick="handleOpenApp()">Mở ứng dụng</button>
+      <version>v1.0.0</version>
+    </div>
 
-<body>
-	<div class="container">
-		<img class="logo" src="./assets/images/logo-honganh.png" alt="Đại Lý Hồng Anh" />
-		<div class="title">Đại Lý Hồng Anh</div>
-		<button class="btn-open" onclick="handleOpenApp()">Mở ứng dụng</button>
-		<version>v1.0.0</version>
-	</div>
+    <!-- <script src="js.js"></script> -->
+    <script src="deeplink.js"></script>
+    <script>
+      var linker = new DeepLinker({
+        onFallback: function () {
+          console.log("↩️ Fallback: chuyển App Store");
+        },
 
-	<!-- <script src="js.js"></script> -->
-	<script src="deeplink.js"></script>
-	<script>
-		var linker = new DeepLinker({
-			onFallback: function () {
-				console.log("↩️ Fallback: chuyển App Store");
-			},
+        onSuccess: function () {
+          console.log("↩️ App mở thành công");
+        },
+      });
 
-			onSuccess: function () {
-				console.log("↩️ App mở thành công");
-			},
-		});
-
-		const handleOpenApp = () => {
-			linker.openOnApp();
-		};
-	</script>
-</body>
-
+      const handleOpenApp = () => {
+        linker.openOnApp();
+      };
+    </script>
+  </body>
 </html>
