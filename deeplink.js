@@ -1,11 +1,6 @@
 (function (window, document) {
   // --- Google Analytics setup ---
   window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag("js", new Date());
-  gtag("config", "UA-22610416-6"); // thay bằng GA ID của bạn
 
   // --- Helper: Generate UUID ---
   function generateUUID() {
