@@ -23,9 +23,23 @@
 		<version>v1.0.0</version>
 	</div>
 
-	<script src="js.js"></script>
+	<!-- <script src="js.js"></script> -->
 	<script src="deeplink.js"></script>
+	<script>
+		var linker = new DeepLinker({
+			onFallback: function () {
+				console.log("↩️ Fallback: chuyển App Store");
+			},
 
+			onSuccess: function () {
+				console.log("↩️ App mở thành công");
+			},
+		});
+
+		const handleOpenApp = () => {
+			linker.openOnApp();
+		};
+	</script>
 </body>
 
 </html>
