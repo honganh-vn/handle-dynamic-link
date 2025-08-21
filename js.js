@@ -161,7 +161,7 @@ function DeepLinker(options) {
   this.destroy = bindEvents.bind(null, "remove");
   this.openURL = function (url) {
     // it can take a while for the dialog to appear
-    var dialogTimeout = 1500;
+    var dialogTimeout = 500;
 
     setTimeout(function () {
       if (hasFocus && options.onIgnored) {
@@ -186,7 +186,7 @@ var linker = new DeepLinker({
     logMessage("❌ Browser failed to respond to the deep link", 1);
   },
   onFallback: function () {
-    window.location = iosStoreLink;
+    window.location.href = iosStoreLink;
     logMessage("↩️ Dialog hidden or user returned to tab → redirecting to store", 2);
   },
   onReturn: function () {
