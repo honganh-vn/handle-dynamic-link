@@ -21,16 +21,18 @@
     var clickOpen = 0;
 
     this.openOnApp = function () {
-      // Nếu user click lần 2 trở đi → chuyển thẳng App Store
       if (clickOpen > 0) {
         window.location = options.storeUrl;
         return;
       }
       clickOpen++;
 
-      // Thử mở app qua custom scheme
       window.location =
-        options.scheme + (options.params ? "?" + new URLSearchParams(options.params).toString() : "") + "&uuid=" + uuid;
+        options.scheme +
+        options.host +
+        (options.params ? "?" + new URLSearchParams(options.params).toString() : "") +
+        "&uuid=" +
+        uuid;
 
       // Sau 3s → check với server
       setTimeout(function () {

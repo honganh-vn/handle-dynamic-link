@@ -19,14 +19,14 @@ var playStoreLink = "https://play.google.com/store/apps/details?id=com.honganhpr
 //   fallback: fallback,
 // };
 
-// var isMobile = {
-//   android: function () {
-//     return /Android/i.test(ua);
-//   },
-//   ios: function () {
-//     return /iPhone|iPad|iPod/i.test(ua);
-//   },
-// };
+var isMobile = {
+  android: function () {
+    return /Android/i.test(ua);
+  },
+  ios: function () {
+    return /iPhone|iPad|iPod/i.test(ua);
+  },
+};
 
 // function launchWekitApproach(url, fallback) {
 //   let now = Date.now();

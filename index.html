@@ -31,6 +31,15 @@
 	<!-- <script src="js.js"></script> -->
 	<script src="deeplink.js"></script>
 	<script>
+		var ua = window.navigator.userAgent;
+		var isMobile = {
+			android: function () {
+				return /Android/i.test(ua);
+			},
+			ios: function () {
+				return /iPhone|iPad|iPod/i.test(ua);
+			},
+		};
 		function logMessage(msg, index) {
 			const box = document.getElementById(`deep-link-log${index}`);
 			const p = document.createElement("p");
@@ -38,8 +47,9 @@
 			box.appendChild(p);
 		}
 		var linker = new DeepLinker({
-			scheme: "drumtifypro://",
-			storeUrl: "https://apps.apple.com/us/app/drumtify-pro-sound-inside-you/id1625542241",
+			scheme: "cplatform://",
+			host: "shop.honganh.vn",
+			storeUrl: isMobile.ios() ? "https://apps.apple.com/us/app/%C4%91%E1%BA%A1i-l%C3%BD-h%E1%BB%93ng-anh/id6470966667" : "https://play.google.com/store/apps/details?id=com.honganhprod.sellermobile&hl=vi",
 			checkApi: "https://api-live-pro.drumtify.com/get-open-scheme",
 			params: {
 				vId: "TKIfLjkUYJw",
@@ -60,7 +70,6 @@
 		});
 		const handleOpenApp = () => {
 			linker.openOnApp();
-
 		}
 	</script>
 
