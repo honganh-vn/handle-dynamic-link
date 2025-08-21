@@ -1,42 +1,3 @@
-// var timeout = 500;
-// var originalLink = window.location.href;
-
-// function openApp(url, fallbackUrl) {
-//   var iframe = document.createElement("iframe");
-//   iframe.style.display = "none";
-//   iframe.src = url;
-//   const hihi = document.body.appendChild(iframe);
-
-//   setTimeout(function () {
-//     document.body.removeChild(iframe);
-//     console.log(hihi);
-//     window.location.href = fallbackUrl;
-//   }, timeout);
-
-//   // setTimeout(function () {
-//   //   window.location.href = originalLink;
-//   // }, timeout + 500);
-// }
-
-// function handleOpenApp() {
-//   var pathAndQuery = window.location.pathname + window.location.search;
-//   var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-//   if (/iPhone|iPad|iPod/.test(userAgent)) {
-//     openApp(
-//       "cplatform://shop.honganh.vn/" + pathAndQuery.substring(1),
-//       "https://apps.apple.com/us/app/%C4%91%E1%BA%A1i-l%C3%BD-h%E1%BB%93ng-anh/id6470966667"
-//     );
-//   } else if (/Android/.test(userAgent)) {
-//     openApp(
-//       "cplatform://shop.honganh.vn/" + pathAndQuery.substring(1),
-//       "https://play.google.com/store/apps/details?id=com.honganhprod.sellermobile&hl=vi"
-//     );
-//   } else {
-//     window.location.href = "https://m.shop.honganh.vn/onboarding";
-//   }
-// }
-
 var fallback = "https://m.shop.honganh.vn/onboarding";
 var pathAndQuery = window.location.pathname + window.location.search;
 var url = "cplatform://shop.honganh.vn/" + pathAndQuery.substring(1);
@@ -66,16 +27,6 @@ var isMobile = {
     return /iPhone|iPad|iPod/i.test(ua);
   },
 };
-console.log(12312);
-// fallback to the application store on mobile devices
-if (isMobile.ios() && urls.deepLink && urls.iosStoreLink) {
-  console.log(12312);
-  iosLaunch();
-} else if (isMobile.android() && androidPackageName) {
-  androidLaunch();
-} else {
-  window.location = urls.fallback;
-}
 
 function launchWekitApproach(url, fallback) {
   document.location = url;
@@ -89,10 +40,17 @@ function launchIframeApproach(url, fallback) {
   iframe.style.border = "none";
   iframe.style.width = "1px";
   iframe.style.height = "1px";
+
   iframe.onload = function () {
     document.location = url;
+    console.log(iframe);
+  };
+  iframe.onerror = function () {
+    console.log(12312312);
   };
   iframe.src = url;
+  console.log(iframe);
+  alert(iframe);
 
   window.onload = function () {
     document.body.appendChild(iframe);
@@ -121,3 +79,13 @@ function androidLaunch() {
     launchIframeApproach(url, urls.playStoreLink || urls.fallback);
   }
 }
+
+const handleOpenApp = () => {
+  if (isMobile.ios()) {
+    iosLaunch();
+  } else if (isMobile.android()) {
+    androidLaunch();
+  } else {
+    window.location = urls.fallback;
+  }
+};
