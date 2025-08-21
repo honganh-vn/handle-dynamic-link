@@ -180,10 +180,10 @@ var url = "cplatform://shop.honganh.vn/" + pathAndQuery.substring(1);
 
 var linker = new DeepLinker({
   onIgnored: function () {
-    window.location = iosStoreLink;
     console.log("browser failed to respond to the deep link");
   },
   onFallback: function () {
+    window.location = iosStoreLink;
     console.log("dialog hidden or user returned to tab");
   },
   onReturn: function () {
