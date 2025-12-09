@@ -46,7 +46,7 @@ export default {
   <body>
     <div class="container">
       <img class="logo" src="/assets/images/logo-honganh.png" alt="Đại Lý Hồng Anh" />
-      <div class="title">${escapeHtml(decodedProductName)}</div>
+      <div class="text-title">Đại Lý Hồng Anh</div>
       <button class="btn-open" onclick="handleOpenApp()">Mở ứng dụng</button>
       <version>v1.0.0</version>
     </div>
