@@ -3,7 +3,6 @@
   var pathAndQuery = window.location.pathname + window.location.search;
   var ua = window.navigator.userAgent;
   var orignalLink = window.location.href;
-  console.log(orignalLink);
 
   function generateUUID() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
@@ -63,7 +62,7 @@
           }
         };
         xhr.send();
-      }, 1500);
+      }, 1000);
     };
   }
 
