@@ -35,7 +35,6 @@ export default {
     <meta charset="UTF-8" />
     <title>${escapeHtml(decodedProductName)} - Đại Lý Hồng Anh</title>
     <meta property="og:title" content="${escapeHtml(decodedProductName)}" />
-    <meta property="og:description" content="Nguồn hàng linh kiện, phụ kiện máy tính nhập khẩu. Đảm bảo chất lượng cao, giá thành cạnh tranh, đáp ứng nhu cầu của các đại lý trên toàn quốc." />
     <meta property="og:image" content="${escapeHtml(decodedThumbnail)}" />
     <meta property="og:url" content="${escapeHtml(url.href)}" />
     <meta name="twitter:card" content="summary_large_image" />
