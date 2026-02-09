@@ -44,6 +44,22 @@
 
     gtag('config', 'G-RNBV8SXPJ6');
   </script>
+  <script>
+    (function () {
+      const url = new URL(window.location.href);
+
+      const path = url.pathname;
+      const nameCate = url.searchParams.get("name_cate");
+
+
+      if (path.includes("/products") && nameCate) {
+        gtag("event", "view_products", {
+          name_cate: nameCate,
+          full_url: window.location.href,
+        });
+      }
+    })();
+  </script>
   <style></style>
 </head>
 
