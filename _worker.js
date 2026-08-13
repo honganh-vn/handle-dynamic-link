@@ -11,7 +11,7 @@ export default {
       // Decode URL params (có thể bị encode nhiều lần)
       let decodedThumbnail =
         thumbnail || "https://talentbold.com/Upload/avatar/20210723/141205979_Hong-Anh-computer-logo.png";
-      let decodedProductName = productName || "Đại Lý Hồng Anh";
+      let decodedProductName = productName || "Hồng Anh B2B";
 
       try {
         while (decodedThumbnail.includes("%")) {
@@ -33,7 +33,7 @@ export default {
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <title>${escapeHtml(decodedProductName)} - Đại Lý Hồng Anh</title>
+    <title>${escapeHtml(decodedProductName)} - Hồng Anh B2B</title>
     <meta property="og:title" content="${escapeHtml(decodedProductName)}" />
     <meta property="og:image" content="${escapeHtml(decodedThumbnail)}" />
     <meta property="og:url" content="${escapeHtml(url.href)}" />
@@ -44,10 +44,10 @@ export default {
   </head>
   <body>
     <div class="container">
-      <img class="logo" src="/assets/images/logo-honganh.png" alt="Đại Lý Hồng Anh" />
-      <div class="text-title">Đại Lý Hồng Anh</div>
+      <img class="logo" src="/assets/images/logo-honganh-new.png" alt="Hồng Anh B2B" />
+      <div class="text-title">Hồng Anh B2B</div>
       <button class="btn-open" onclick="handleOpenApp()">Mở ứng dụng</button>
-      <version>v1.0.0</version>
+      <version>v1.1.76</version>
     </div>
     <script src="/deeplink.js"></script>
     <script>

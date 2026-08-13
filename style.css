@@ -18,10 +18,10 @@ body {
 }
 
 .logo {
-  width: 10vh;
+  width: 20vh;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   border-radius: 50px;
-  padding: 40px;
+  padding: 20px;
   margin-bottom: 20px;
   margin-top: 15vh;
 }
@@ -37,7 +37,7 @@ body {
   display: inline-block;
   margin-top: 20px;
   padding: 24px 48px;
-  background-color: #005eff;
+  background-color: rgb(12, 55, 75);
   color: white;
   font-size: 36px;
   font-weight: 500;
