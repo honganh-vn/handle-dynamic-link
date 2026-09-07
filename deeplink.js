@@ -26,15 +26,16 @@
 
   function DeepLinker(options) {
     var uuid = generateUUID();
-    var clickOpen = 0;
 
     this.openOnApp = function () {
-      if (clickOpen > 0) {
-        console.log(33333);
-        window.location = isMobile.ios() ? iosStoreLink : playStoreLink;
-        return;
-      }
-      clickOpen++;
+      // App đã mở = tab mất focus/bị ẩn. Đây là tín hiệu tại trình duyệt,
+      // không phụ thuộc server nên tức thời, không bị trễ do API chậm.
+      var appOpened = false;
+      var markAppOpened = function () {
+        if (document.hidden) appOpened = true;
+      };
+      document.addEventListener("visibilitychange", markAppOpened);
+      window.addEventListener("pagehide", markAppOpened);
 
       window.location =
         "cplatform://shop.honganh.vn/" +
@@ -44,25 +45,23 @@
         uuid;
 
       setTimeout(function () {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://deeplink-api.onrender.com/get-open-scheme?uuid=" + uuid, true);
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            if (xhr.responseText === "0") {
-              window.location = isMobile.ios() ? iosStoreLink : playStoreLink;
-              clickOpen = 0;
-              setTimeout(function () {
-                window.location = orignalLink;
-              }, 1000);
-              if (options.onFallback) options.onFallback();
-            } else {
-              clickOpen = 0;
-              if (options.onSuccess) options.onSuccess();
-            }
-          }
-        };
-        xhr.send();
-      }, 1000);
+        document.removeEventListener("visibilitychange", markAppOpened);
+        window.removeEventListener("pagehide", markAppOpened);
+
+        if (appOpened || document.hidden) {
+          if (options.onSuccess) options.onSuccess();
+          return;
+        }
+
+        // Không mở được app trong thời gian chờ -> sang Store ngay,
+        // không đợi phản hồi từ deeplink-api (server free tier có thể
+        // cold-start chậm vài chục giây, làm redirect bị trễ khó hiểu).
+        window.location = isMobile.ios() ? iosStoreLink : playStoreLink;
+        setTimeout(function () {
+          window.location = orignalLink;
+        }, 1000);
+        if (options.onFallback) options.onFallback();
+      }, 2000);
     };
   }
 
